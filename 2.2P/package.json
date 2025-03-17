@@ -1,0 +1,17 @@
+{
+  "name": "task2.2p",
+  "version": "1.0.0",
+  "description": "Task 2.2P",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Shivam Saini",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {},
+  "keywords": []
+}
