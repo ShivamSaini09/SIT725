@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/myprojectDB", {
 });
 
 mongoose.connection.on("connected", () => {
-  console.log("✅ Connected to MongoDB");
+  console.log("Connected to MongoDB");
 });
 
 // Use project routes
