@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="calculator-container">
+        <h1>Simple Calculator</h1>
+
+        <form id="calcForm">
+            <label for="a">Enter number A:</label>
+            <input type="number" id="a" name="a" required>
+
+            <label for="b">Enter number B:</label>
+            <input type="number" id="b" name="b" required>
+
+            <div class="button-group">
+                <button type="button" onclick="calculate('add')">Add</button>
+                <button type="button" onclick="calculate('subtract')">Subtract</button>
+                <button type="button" onclick="calculate('multiply')">Multiply</button>
+                <button type="button" onclick="calculate('divide')">Divide</button>
+            </div>
+        </form>
+
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function calculate(operation) {
+            const a = document.getElementById("a").value.trim();
+            const b = document.getElementById("b").value.trim();
+
+            if (a === "" || b === "" || isNaN(a) || isNaN(b)) {
+                document.getElementById("result").innerText = "Invalid input. Please enter valid numbers.";
+                return;
+            }
+
+            fetch(`/${operation}?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Invalid input or server error");
+                    return res.text();
+                })
+                .then(data => {
+                    document.getElementById("result").innerText = "Result: " + data;
+                })
+                .catch(err => {
+                    document.getElementById("result").innerText = err.message;
+                });
+        }
+    </script>
+</body>
+
+</html>
